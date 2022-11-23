@@ -23,10 +23,10 @@ echo -e "\nMost goals scored in a single game by one team:"
 echo  "$($PSQL "SELECT MAX(winner_goals) FROM games")"
 
 echo -e "\nNumber of games where the winning team scored more than two goals:"
-echo
+echo  "$($PSQL "SELECT DISTINCT COUNT(winner_id) FROM games WHERE winner_goals > 2")"
 
 echo -e "\nWinner of the 2018 tournament team name:"
-echo
+echo  "$($PSQL "SELECT name FROM teams INNER JOIN games USING(team_id) WHERE year=2018 AND winner_id=team_id")"
 
 echo -e "\nList of teams who played in the 2014 'Eighth-Final' round:"
 echo
